@@ -61,7 +61,7 @@ make -j8 download
 # Build
 make -j$(nproc)
 
-make -j32 tools/install && make -j32 toolchain/install && make -j32 IGNORE_ERRORS=1
+make -j8 download && make -j32 tools/install && make -j32 toolchain/install && make -j32 IGNORE_ERRORS=1 || make -j1 V=s
 
 # ref: https://weixiang.github.io/posts/compile-openwrt-yourself/
 # clear environment
