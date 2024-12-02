@@ -60,6 +60,21 @@ make -j8 download
 
 # Build
 make -j$(nproc)
+
+make -j32 tools/install && make -j32 toolchain/install && make -j32 IGNORE_ERRORS=1
+
+# ref: https://weixiang.github.io/posts/compile-openwrt-yourself/
+# clear environment
+# delete `/bin` `/build_dir`
+make clean
+# when u switch architecture
+make dirclean
+# justify
+rm -rf ./tmp && rm -rf .config
+make menuconfig
+make download -j8 V=s
+# 单线程编译
+make -j$(nproc) || make -j1 || make -j1 V=s
 ```
 
 ## How to install
