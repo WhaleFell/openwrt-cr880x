@@ -44,8 +44,15 @@ cd openwrt-redmi-ax3000
 make defconfig
 make menuconfig
 
+# luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme-argon
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
+
+# Wanip
+sed -i 's/192.168.1.1/192.168.199.1/g' package/base-files/files/bin/config_generate
+
 # Download
-make -j16 download
+make -j8 download
 
 # Build
 make -j$(nproc)

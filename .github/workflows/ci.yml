@@ -70,7 +70,7 @@ jobs:
 
       - name: Download
         run: |
-          make -j16 download
+          make -j8 download
 
       - name: Build tools
         run: |
