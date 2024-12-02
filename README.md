@@ -53,7 +53,7 @@ git clone https://github.com/jerrykuku/luci-theme-argon.git ./package/luci-theme
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
 
 # Wanip
-sed -i 's/192.168.1.1/192.168.199.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.64.1/g' package/base-files/files/bin/config_generate
 
 # Download
 make -j8 download
