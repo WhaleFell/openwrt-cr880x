@@ -64,9 +64,9 @@ jobs:
       #     EOF
       #     make defconfig
 
-      - name: Use Custom Config
-        run: |
-          cat seed1.config > .config
+      # - name: Use Custom Config
+      #   run: |
+      #     cat seed1.config > .config
 
       - name: Download
         run: |
