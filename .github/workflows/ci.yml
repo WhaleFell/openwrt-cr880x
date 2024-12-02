@@ -37,7 +37,7 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
-      # - name: Configure
+      # - name: CR880x Configure
       #   run: |
       #     cat <<EOF | sed -E 's/^  //' >.config
       #       CONFIG_TARGET_ipq50xx=y
@@ -64,9 +64,9 @@ jobs:
       #     EOF
       #     make defconfig
 
-      # - name: Use Custom Config
+      # - name: Merge custom config
       #   run: |
-      #     cat seed1.config > .config
+      #     ./scripts/diffconfig.sh
 
       - name: Download
         run: |
