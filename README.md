@@ -2,22 +2,22 @@
 
 `Openwrt` for `Redmi AX3000` / `Xiaomi CR880x` / `Xiaomi CR881x`
 
-| Device                                                 | Boot | Switch | CPU Ethernet | NSS NAT | 2.4G WiFi | 5G WiFi |
-| :-:                                                    | :-:  | :-:    | :-:          | :-:     | :-:       | :-:     |
-| Xiaomi CR880x <br /> (M79 version)                     | ✔️  | ✔️     | ✔️          | ✔️      | ✔️       | ✔️¹     |
-| Redmi AX3000 <br /> Xiaomi CR880x <br /> (M81 version) | ✔️  | ✔️     | ✔️          | ✔️      | ✔️       | ✔️¹     |
-| Xiaomi CR881x                                          | ✔️  | ✔️     | ✔️          | ✔️      | ✔️       | ✔️¹     |
-| CMCC RAX3000Q                                          | ⚠️ No test ⚠️ |
->
+|                         Device                         |     Boot      | Switch | CPU Ethernet | NSS NAT | 2.4G WiFi | 5G WiFi |
+| :----------------------------------------------------: | :-----------: | :----: | :----------: | :-----: | :-------: | :-----: |
+|           Xiaomi CR880x <br /> (M79 version)           |      ✔️       |   ✔️   |      ✔️      |   ✔️    |    ✔️     |   ✔️¹   |
+| Redmi AX3000 <br /> Xiaomi CR880x <br /> (M81 version) |      ✔️       |   ✔️   |      ✔️      |   ✔️    |    ✔️     |   ✔️¹   |
+|                     Xiaomi CR881x                      |      ✔️       |   ✔️   |      ✔️      |   ✔️    |    ✔️     |   ✔️¹   |
+|                     CMCC RAX3000Q                      | ⚠️ No test ⚠️ |
+
 > NOTE¹: For 160MHz, `Country Code`, `Width` and `Channel` need to be set correctly. And wait 1 minute for radar detection, then the WiFi will be appeareed.
 >
->	```
->	uci -q batch <<-EOF
->		wireless.radio1.country='CN'
->		wireless.radio1.htmode='HE160'
->		wireless.radio1.channel='64'
->	EOF
->	```
+>     ```
+>     uci -q batch <<-EOF
+>     	wireless.radio1.country='CN'
+>     	wireless.radio1.htmode='HE160'
+>     	wireless.radio1.channel='64'
+>     EOF
+>     ```
 
 ## How to build
 
@@ -36,10 +36,12 @@ git clone https://github.com/hzyitc/openwrt-redmi-ax3000
 cd openwrt-redmi-ax3000
 
 # Update and install feeds
+./scripts/feeds clean
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
 # Configure
+make defconfig
 make menuconfig
 
 # Download
@@ -59,28 +61,28 @@ make -j$(nproc)
 
 2. Download the vendor firmware:
 
-	Offical website: https://www.miwifi.com/miwifi_download.html
+   Offical website: https://www.miwifi.com/miwifi_download.html
 
-	| Device        | URL                                                                                                |
-	| :-:           | :-:                                                                                                |
-	| Redmi AX3000  | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/ra81/miwifi_ra81_firmware_1dd69c_1.0.33.bin     |
-	| Xiaomi CR8806 | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/cr8806/miwifi_cr8806_firmware_fe70b_6.2.14.bin  |
-	| Xiaomi CR8808 | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/cr8808/miwifi_cr8808_firmware_9d216_6.2.11.bin  |
-	| Xiaomi CR8809 | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/cr8809/miwifi_cr8809_firmware_b814a_6.2.102.bin |
+   |    Device     |                                                URL                                                 |
+   | :-----------: | :------------------------------------------------------------------------------------------------: |
+   | Redmi AX3000  |   https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/ra81/miwifi_ra81_firmware_1dd69c_1.0.33.bin   |
+   | Xiaomi CR8806 | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/cr8806/miwifi_cr8806_firmware_fe70b_6.2.14.bin  |
+   | Xiaomi CR8808 | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/cr8808/miwifi_cr8808_firmware_9d216_6.2.11.bin  |
+   | Xiaomi CR8809 | https://cdn.cnbj1.fds.api.mi-img.com/xiaoqiang/rom/cr8809/miwifi_cr8809_firmware_b814a_6.2.102.bin |
 
 3. Use [`MIWIFIRepairTool`](https://bigota.miwifi.com/xiaoqiang/tools/MIWIFIRepairTool.x86.zip) to recover the device's firmware.
 
-	Offical tutorial: https://www.xiaomi.cn/post/19134127
+   Offical tutorial: https://www.xiaomi.cn/post/19134127
 
-	> This tool simply does `TFTP recovery`. You can use other `DHCP` and `TFTP` server as well.
-	>
-	> Here are some useful links:
-	>
-	>> https://forum.openwrt.org/t/adding-openwrt-support-for-xiaomi-redmi-router-ax6s-xiaomi-router-ax3200/111085/513
-	>>
-	>> https://github.com/mikeeq/xiaomi_ax3200_openwrt#uart-flash
-	>>
-	>> https://openwrt.org/inbox/toh/xiaomi/xiaomi_ax3600#tftp_recovery
+   > This tool simply does `TFTP recovery`. You can use other `DHCP` and `TFTP` server as well.
+   >
+   > Here are some useful links:
+   >
+   > > https://forum.openwrt.org/t/adding-openwrt-support-for-xiaomi-redmi-router-ax6s-xiaomi-router-ax3200/111085/513
+   > >
+   > > https://github.com/mikeeq/xiaomi_ax3200_openwrt#uart-flash
+   > >
+   > > https://openwrt.org/inbox/toh/xiaomi/xiaomi_ax3600#tftp_recovery
 
 4. Hold the `reset` button and reboot the router until the `system` LED blink.
 
@@ -92,11 +94,11 @@ make -j$(nproc)
 
 8. Run the following command inside `U-boot`:
 
-	```shell
-	setenv boot_wait on
-	setenv uart_en 1
-	saveenv
-	```
+   ```shell
+   setenv boot_wait on
+   setenv uart_en 1
+   saveenv
+   ```
 
 Now we have enabled `UART`.
 
