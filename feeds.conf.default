@@ -2,3 +2,11 @@ src-git-full packages https://git.openwrt.org/feed/packages.git^48242ee7a190db77
 src-git-full luci https://git.openwrt.org/project/luci.git^e98243ef9eb838cca80cdd6d1bd0cf69a509d103
 src-git-full routing https://git.openwrt.org/feed/routing.git^8071852b4556a02533cacb7a0f6a432df3507302
 src-git-full telephony https://git.openwrt.org/feed/telephony.git^920fbc5c0a2e4badf51bceff42e9a1e3eb693462
+
+# custom
+src-git wrtbwmon https://github.com/brvphoenix/luci-app-wrtbwmon
+
+# passwall
+# https://github.com/xiaorouji/openwrt-passwall/discussions/1603
+src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main
+src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main
