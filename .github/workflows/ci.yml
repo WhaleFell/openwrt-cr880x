@@ -65,28 +65,28 @@ jobs:
 
       #       CONFIG_PACKAGE_luci=y
       #     EOF
-      #     make defconfig
+      #
 
-      # - name: Merge custom config
-      #   run: |
-      #     ./scripts/diffconfig.sh
+      - name: Merge custom config
+        run: |
+          make defconfig
 
       - name: Download
         run: |
           make -j8 download
 
-      # - name: Build tools
-      #   run: |
-      #     make -j$(nproc) tools/install
+      - name: Build tools
+        run: |
+          make -j$(nproc) tools/install
 
-      # - name: Build toolchain
-      #   run: |
-      #     make -j$(nproc) toolchain/install
+      - name: Build toolchain
+        run: |
+          make -j$(nproc) toolchain/install
 
       - name: Build all with error handle
         run: |
-          make defconfig
-          make -j$(nproc) download && make -j$(nproc) tools/install && make -j$(nproc) toolchain/install && make -j$(nproc) IGNORE_ERRORS=1 || make -j1 V=s
+
+          make -j$(nproc) IGNORE_ERRORS=1 || make -j1 V=s
 
       - name: Upload bin to artifacts
         uses: actions/upload-artifact@v3
