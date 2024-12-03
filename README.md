@@ -37,8 +37,7 @@ cd openwrt-redmi-ax3000
 
 # Update and install feeds
 ./scripts/feeds clean
-./scripts/feeds update -a
-./scripts/feeds install -a
+./scripts/feeds update -a && ./scripts/feeds install -a
 
 # update golang
 rm -rf feeds/packages/lang/golang

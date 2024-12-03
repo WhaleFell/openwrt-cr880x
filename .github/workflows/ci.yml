@@ -85,7 +85,7 @@ jobs:
 
       - name: Build all with error handle
         run: |
-          # make -j$(nproc) IGNORE_ERRORS=1
+          make defconfig
           make -j$(nproc) download && make -j$(nproc) tools/install && make -j$(nproc) toolchain/install && make -j$(nproc) IGNORE_ERRORS=1 || make -j1 V=s
 
       - name: Upload bin to artifacts
