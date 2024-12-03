@@ -70,6 +70,9 @@ make clean
 make dirclean
 # justify
 rm -rf ./tmp && rm -rf .config
+
+make clear && make dirclean && rm -rf ./tmp
+
 make menuconfig
 make download -j8 V=s
 # 单线程编译
